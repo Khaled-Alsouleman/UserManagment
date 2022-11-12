@@ -1,4 +1,4 @@
-package com.example.usermanagment.models;
+package entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,12 +15,11 @@ public class User  implements Serializable {
     public User() {
     }
 
-    public User(String firstname, String lastname, String email, LocalDate birthday, String password) {
+    public User(String firstname, String lastname, String email, LocalDate birthday) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.birthday = birthday;
-        this.password = password;
     }
 
     public Long getId() {

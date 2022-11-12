@@ -1,6 +1,6 @@
-package com.example.usermanagment.database;
+package control;
 
-import com.example.usermanagment.models.User;
+import entity.User;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Singleton;
@@ -11,18 +11,15 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 @Singleton
-public class UserMemory {
+public class UserService_Singleton {
     private Map<Long, User> users = new HashMap<>();
     private AtomicLong newId = new AtomicLong(1L);
 
 
     @PostConstruct
     public void init() {
-        User demoUser = new User("Tech", "11", "web@mail.de", LocalDate.of(2018, Month.JANUARY, 1), "password");
-        Long newKey = newId.getAndIncrement();
-        demoUser.setId(newKey);
-        users.put(newKey, demoUser);
-
+        User demoUser = new User("Tech", "11", "web@mail.de", LocalDate.of(2018, Month.JANUARY, 1));
+        this.addUser(demoUser);
     }
 
     public void addUser(final User user) {
@@ -35,13 +32,17 @@ public class UserMemory {
         return this.users.values().stream().collect(Collectors.toList());
     }
 
-    public Optional<User> getSingleUser(final Long id) {
-        return Optional.of(users.get(id));
+    public User getSingleUser(final long id) {
+       User user = new User();
+       user.setId(-1l);
+       if (this.users.containsKey(id)) return this.users.get(id);
+       return user;
     }
 
-    public void updateUser(final Long id, final User user) {
+    public void updateUser(final long id, final User user) {
         this.users.put(id, user);
     }
 
+    public void removeUser(final long id) {this.users.remove(id);}
 
 }

@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="UserManagment-1.0-SNAPSHOT.war">
+    <root id="archive" name="user-manager.war">
       <element id="artifact" artifact-name="UserManagment:war exploded" />
     </root>
   </artifact>
