@@ -1,34 +1,32 @@
 package entity;
 
-import java.io.Serializable;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-public class User  implements Serializable {
-
-    private Long id ;
+@Entity
+@Table(name = "users")
+public class User_Database {
+    @Id
+    @GeneratedValue
+    @Column(name = "id", nullable = false)
+    private Long id;
+    @NotEmpty
+    @Size(max = 50)
     private String firstname;
+
+    @NotEmpty
+    @Size(max = 50)
     private String lastname;
+    @NotEmpty
+    @Size(max = 150)
     private String email;
     private LocalDate birthday;
+    @Transient
+    @NotEmpty
+    @Size(max = 255)
     private String password;
-
-    public User() {
-    }
-
-    public User(String firstname, String lastname, String email, LocalDate birthday) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.birthday = birthday;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getFirstname() {
         return firstname;
@@ -68,5 +66,13 @@ public class User  implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
