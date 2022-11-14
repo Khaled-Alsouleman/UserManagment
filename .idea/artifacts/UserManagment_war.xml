@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="user-manager.war">
+    <root id="archive" name="tech11.war">
       <element id="artifact" artifact-name="UserManagment:war exploded" />
     </root>
   </artifact>

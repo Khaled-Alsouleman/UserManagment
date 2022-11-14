@@ -1,9 +1,8 @@
-package boundary.additionallyService.inMemoryStorage;
+package boundary.unrequiredService;
 
 import control.InMemoryStorage;
 import entity.UserDTO;
 import entity.User_InMemoryStorage;
-
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -15,6 +14,7 @@ import java.util.stream.Collectors;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ServiceInMemoryStorage {
+    //http://localhost:8080/tech11/user-manager/users
     @Inject
     private InMemoryStorage storage;
 

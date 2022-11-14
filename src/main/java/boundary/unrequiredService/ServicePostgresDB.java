@@ -1,4 +1,4 @@
-package boundary.additionallyService.postgress_DB;
+package boundary.unrequiredService;
 
 import control.PostgresDatabase;
 import entity.UserDTO;
@@ -29,6 +29,8 @@ public class ServicePostgresDB {
         }
     }
 
+    //http://localhost:8080/tech11/user-manager/usersDB/1
+    //http://localhost:8080/tech11/user-manager/usersDB/1?showPassword=true
     @GET
     @Path("{id: \\d+}")
     public Response getUser(@PathParam("id") final Long id, @QueryParam("showPassword") @DefaultValue("false") final boolean showPassword) {

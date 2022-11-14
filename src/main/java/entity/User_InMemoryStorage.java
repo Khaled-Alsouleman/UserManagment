@@ -1,46 +1,36 @@
 package entity;
 
-import utils.EncryptPassword;
-
-import javax.persistence.Transient;
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class User_Singleton  {
+import static entity.User_PostgresDB.getUserDTO;
 
-    private Long id ;
+public class User_InMemoryStorage {
+
+    private Long id;
     private String firstname;
     private String lastname;
     private String email;
 
 
-   private LocalDate birthday;
-   @Transient
-   private String password;
+    private LocalDate birthday;
 
-    public User_Singleton() {
-        super();
+    private String password;
 
+    public User_InMemoryStorage() {
     }
 
-    public User_Singleton(String firstname, String lastname, String email, LocalDate birthday, String password) {
-        super();
+    public User_InMemoryStorage(String firstname, String lastname, String email, LocalDate birthday, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.birthday = birthday;
-        this.password= EncryptPassword.doEncryptPassword(password);
+        this.password = password;
     }
-    public  UserDTO toTDO(){
 
-     UserDTO tempUser = new UserDTO();
-     tempUser.setId(this.getId());
-     tempUser.setFirstname(this.getFirstname());
-     tempUser.setLastname(this.getLastname());
-     tempUser.setBirthday(this.getBirthday());
-     tempUser.setEmail(this.getEmail());
-     return tempUser;
+    public UserDTO toDTO() {
+        return getUserDTO(this.id, this.firstname, this.lastname, this.email, this.birthday);
     }
+
     public Long getId() {
         return id;
     }
@@ -86,6 +76,6 @@ public class User_Singleton  {
     }
 
     public void setPassword(String password) {
-        this.password = EncryptPassword.doEncryptPassword(password);;
+        this.password = password;
     }
 }

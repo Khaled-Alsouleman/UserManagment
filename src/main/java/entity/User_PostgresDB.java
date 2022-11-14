@@ -7,11 +7,11 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "users")
-public class User_Database {
+public class User_PostgresDB {
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
-    private Long id;
+    private long id;
     @NotEmpty
     @Size(max = 50)
     private String firstname;
@@ -23,10 +23,35 @@ public class User_Database {
     @Size(max = 150)
     private String email;
     private LocalDate birthday;
-    @Transient
+
     @NotEmpty
     @Size(max = 255)
     private String password;
+
+    public User_PostgresDB() {
+    }
+
+    public User_PostgresDB(String firstname, String lastname, String email, LocalDate birthday, String password) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.birthday = birthday;
+        this.password = password;
+    }
+
+    public UserDTO toDTO() {
+        return getUserDTO(this.id, this.firstname, this.lastname, this.email, this.birthday);
+    }
+
+    public static UserDTO getUserDTO(Long id, String firstname, String lastname, String email, LocalDate birthday) {
+        UserDTO tempUser = new UserDTO();
+        tempUser.setId(id);
+        tempUser.setFirstname(firstname);
+        tempUser.setLastname(lastname);
+        tempUser.setEmail(email);
+        tempUser.setBirthday(birthday);
+        return tempUser;
+    }
 
     public String getFirstname() {
         return firstname;
