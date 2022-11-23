@@ -9,3 +9,4 @@ Path: UserManagement/src/main/java/control/PostgresDatabase.java
 
 It is important to know that all user account attributes are mandatory when creating a new account or updating an existing one. Otherwise, you'll get a 400 status code, which indicates a bad request.
 
+With the Get request you get all account information except the password. In order for the password to be displayed, you must specify “showPassword=true” as the query parameter for get single user and “showPasswords=true” for get all users.
