@@ -7,3 +7,5 @@ Path: UserManagment/src/main/java/control/InMemoryStorage.java
 The second mechanism is the Jakarta Persistence API (JPA) for serializing Java objects into or reading data from the database using PostgreSQL. The implementation can be found in the PostgresDatabase class. 
 Path: UserManagement/src/main/java/control/PostgresDatabase.java
 
+It is important to know that all user account attributes are mandatory when creating a new account or updating an existing one. Otherwise, you'll get a 400 status code, which indicates a bad request.
+
